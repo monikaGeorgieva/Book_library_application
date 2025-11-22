@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Профил на потребител</title>
+    <link rel="stylesheet" href="/profile.css">
+</head>
+<body>
+<header class="site-header">
+    <h1>Book Library</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{index}">Начало</a></li>
+            <li><a th:href="@{/books}" class="active">Книги</a></li>
+            <li><a th:href="@{about}">За нас</a></li>
+            <li><a th:href="@{profile}" class="active">Профил</a></li>
+
+
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="user-card">
+        <div class="profile-header">
+            <img th:src="${#strings.isEmpty(user.profilePicture) ? 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png' : user.profilePicture }" alt="Аватар" class="avatar">
+            <p th:text="${user.username}">Username</p>
+            <h1 th:text="${user.firstName}">Иван</h1>
+            <h1 th:text="${user.lastName}">Петров</h1>
+            <p th:text="${#strings.isEmpty(user.email) ? 'Редактирайте профила си и добавете имейл' : user.email}"> ivan.petrov@example.com </p>
+            <p th:text="${user.country.displayName}"> България</p>
+            <p th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY HH:mm' )}"></p>
+            <a href="#" class="btn">Редактирай профил</a>
+            <!-- да си направя страница за редактиране на профила -->
+        </div>
+    </section>
+
+    <!-- Любими книги -->
+    <section class="favorites-section">
+        <h2>Любими книги</h2>
+
+        <div th:if="${#lists.isEmpty(favourites)}">
+            <p style="color: #666; font-size: 18px; margin-top: 20px;">
+                Все още нямаш любими книги, добави ги сега!
+            </p>
+        </div>
+
+
+        <div class="books-grid">
+            <div th:if="${!#lists.isEmpty(favourites)}">
+                <div class="book-card" th:each="book : ${favourites}">
+                    <p><strong>Име на книга:</strong> <span th:text="${book.title}"></span></p>
+                    <p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
+                    <p><strong>Описание:</strong> <span th:text="${book.description}"></span></p>
+                </div>
+            </div>
+
+
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn">🚪 Изход</button>
+        </form>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Book Library. Всички права запазени.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактиране на книга</title>
+  <link rel="stylesheet" href="/library.css">
+</head>
+<body>
+
+<header>
+  <h1>✏️ Редактиране на книга</h1>
+  <nav>
+    <a th:href="@{/index}">Начало</a>
+    <a th:href="@{/books}">Книги</a>
+  </nav>
+</header>
+
+<main>
+  <form th:action="@{'/books/edit/' + ${book.ISBN}}" th:object="${book}" method="post" class="book-form">
+    <label>Заглавие:</label>
+    <input type="text" th:field="*{title}" required>
+
+    <label>Автор:</label>
+    <input type="text" th:field="*{author}" required>
+
+    <label>Описание:</label>
+    <textarea th:field="*{description}" rows="4"></textarea>
+
+    <label>Линк към корица:</label>
+    <input type="url"
+           th:field="*{cover}"
+           placeholder="https://example.com/cover.jpg">
+
+    <label>Тип:</label>
+    <select id="type" name="type"  required th:field="*{type}">
+      <option th:each="type : ${T(book_library_app.book.model.Type).values()}"
+              th:value="${type}" th:text="${type.getDisplayName()}" >
+
+      </option>
+
+    </select>
+
+    <button type="submit">💾 Запази</button>
+    <a th:href="@{/books}">Отказ</a>
+  </form>
+</main>
+
+<footer>
+  <p>© 2025 Book Library</p>
+</footer>
+
+</body>
+</html>

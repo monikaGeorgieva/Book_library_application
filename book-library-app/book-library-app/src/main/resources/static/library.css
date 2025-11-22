@@ -1,0 +1,170 @@
+/* Основни стилове */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f7;
+    color: #2c3e50;
+}
+
+/* Header */
+header {
+    background: #34495e;
+    color: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav a {
+    color: #ecf0f1;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #1abc9c;
+}
+
+/* Основно съдържание */
+main {
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+main h2 {
+    margin-bottom: 20px;
+}
+
+/* Грид със списък от книги */
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* Картичка за книга */
+.book-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.book-card:hover {
+    transform: scale(1.03);
+}
+
+.book-card h3 {
+    margin-top: 0;
+    color: #2980b9;
+}
+
+.book-card p {
+    margin: 6px 0;
+}
+
+.book-card .actions {
+    margin-top: 10px;
+}
+
+.book-card .actions a,
+.book-card .actions button {
+    background: #1abc9c;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.book-card .actions button:hover,
+.book-card .actions a:hover {
+    background: #16a085;
+}
+
+/* Форма за добавяне и редактиране */
+.book-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.book-form label {
+    font-weight: bold;
+}
+
+.book-form input,
+.book-form textarea,
+.book-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.book-form button {
+    padding: 12px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.book-form button:hover {
+    background: #16a085;
+}
+
+.book-form a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.book-form a:hover {
+    color: #1abc9c;
+}
+
+/* Footer */
+footer {
+    background: #34495e;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.add-book-btn {
+    background: #1abc9c;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.add-book-btn:hover {
+    background: #16a085;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Library - Начало</title>
+    <link rel="stylesheet" th:href="@{index.css}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="logo">📖 Book Library</h1>
+        <nav>
+            <ul>
+               <li><a th:href="@{/index}">Начало</a></li>
+                <li><a th:href="@{/books}" class="active">Книги</a></li>
+                <li> <a th:href="@{/favourites}">Любими</a></li>
+                <li>  <a th:href="@{/profile}">Профил</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="welcome">
+        <h2>Добре дошли!</h2>
+        <p>
+            Book Library е онлайн библиотека, където можете да разглеждате книги,
+            да ги добавяте във ваши списъци и да откривате нови заглавия.
+        </p>
+        <a th:href="@{books}" class="btn">Виж каталога</a>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>📖 Огромен избор</h3>
+            <p>Достъп до разнообразни жанрове и автори.</p>
+        </div>
+        <div class="feature-card">
+            <h3>❤️ Любими книги</h3>
+            <p>Запазете книгите, които харесвате най-много.</p>
+        </div>
+        <div class="feature-card">
+            <h3>👤 Ваш профил</h3>
+            <p> <a href="register"> Създайте свой профил и управлявайте библиотеката си. </a></p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2025 Book Library | Създадено с ❤️ за книгите</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Library - Книги</title>
+  <link rel="stylesheet" th:href="@{/books.css}">
+</head>
+<body>
+<header>
+  <h1>📚 Book Library</h1>
+  <nav>
+    <a th:href="@{/index}">Начало</a>
+    <a th:href="@{/books}" class="active">Книги</a>
+    <a th:href="@{/favourites}">Любими</a>
+    <a th:href="@{login}">Профил</a>
+
+  </nav>
+</header>
+
+<main>
+  <h2>Списък с книги</h2>
+
+  <div class="books-container">
+
+    <div class="book-card" th:each="book : ${books}">
+
+      <img th:if="${book.cover != null}"
+           th:src="${book.cover}"
+           alt="Book cover"
+           class="book-cover">
+
+      <img th:if="${book.cover == null}"
+           src="https://as2.ftcdn.net/v2/jpg/01/20/73/69/1000_F_120736914_mvc0UMUrgebZ11izrwPjF6HsHdsXnr8P.jpg"
+           alt="Book cover"
+           class="book-cover">
+
+
+
+      <h3 th:text="${book.title}">Заглавие</h3>
+      <p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
+
+      <p><strong>Описание:</strong> <span th:text="${book.description}"></span></p>
+
+      <p><strong>Дата на публикуване: </strong> <span th:text="${#temporals.format(book.publishedOn, 'dd.MM.yyyy')}"></span></p>
+
+      <p><strong>Тип:</strong> <span th:text="${book.type}"></span></p>
+
+      <div sec:authorize="hasRole('ADMIN')">
+        <form th:action="@{'/books/delete/' + ${book.ISBN}}" method="post">
+          <button type="submit">🗑 Изтрий</button>
+        </form>
+      </div>
+
+
+      <form th:action="@{'/favourites/add/' + ${book.ISBN}}" method="post">
+        <button type="submit" class="add-book-btn">⭐ Добави в любими</button>
+      </form>
+
+
+      <a th:href="@{'/books/edit/' + ${book.ISBN}}" class="add-book-btn">➕ Редактирай книга</a>
+
+    </div>
+  </div>
+
+
+  <div style="margin-bottom: 20px;">
+    <a class="add-book-btn" th:href="@{/books/add}"> ➕ Добави нова книга</a>
+  </div>
+
+
+
+
+
+</main>
+
+<footer>
+  <p>© 2025 Book Library. Всички права запазени.</p>
+</footer>
+</body>
+</html>

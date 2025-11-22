@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="logo">📚 Book Library</h1>
+        <nav>
+            <ul>
+                <li><a th:href="@{/}"> Начало</a></li>
+                <li><a th:href="@{books}">Книги</a></li>
+                <li><a th:href="@{/favourites}">Любими</a></li>
+                <li><a th:href="@{profile}">Профил</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero">
+        <h2>Добре дошъл в Book Library</h2>
+        <p>Тук можеш да разглеждаш книги, да добавяш любими и да създаваш своя собствена библиотека.</p>
+        <a href="#" class="btn">Разгледай книгите</a>
+    </section>
+
+    <section class="books">
+        <h2>Препоръчани книги</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <h3>Името на вятъра</h3>
+                <p>Патрик Ротфус</p>
+            </div>
+            <div class="book-card">
+                <h3>Властелинът на пръстените</h3>
+                <p>Дж. Р. Р. Толкин</p>
+            </div>
+            <div class="book-card">
+                <h3>1984</h3>
+                <p>Джордж Оруел</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2025 Book Library | Всички права запазени</p>
+</footer>
+</body>
+</html>
