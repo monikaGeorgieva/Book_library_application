@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Library - Регистрация</title>
+    <link rel="stylesheet" th:href="@{/register.css}">
+</head>
+<body>
+<div class="register-container">
+    <h1>📚 Book Library</h1>
+    <h2>Създай нов акаунт</h2>
+    <form th:action="@{/register}" method="post" th:object="${registerRequest}">
+        <!-- Потребителско име -->
+        <div class="form-group">
+            <label for="username">Потребителско име</label>
+            <input th:field="*{username}" type="text" id="username" name="username" placeholder="Въведете потребителско име" required>
+        </div>
+
+        <!-- Парола -->
+        <div class="form-group">
+            <label for="password">Парола</label>
+            <input th:field="*{password}" type="password" id="password" name="password" placeholder="Въведете парола" required>
+        </div>
+
+        <!-- Държава -->
+        <div class="form-group">
+            <label for="country">Държава</label>
+            <select id="country" name="country" required th:field="*{country}" >
+                <option th:each="country : ${T(book_library_app.user.model.Country).values()}" th:value="${country}" th:text="${country.displayName}" ></option>
+            </select>
+        </div>
+
+        <!-- Бутон -->
+        <button type="submit" class="btn">Регистрация</button>
+    </form>
+
+    <p class="login-link">Вече имате акаунт? <a th:href="@{login}">Вход</a></p>
+</div>
+</body>
+</html>

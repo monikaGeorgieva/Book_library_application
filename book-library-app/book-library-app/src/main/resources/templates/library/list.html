@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Library - Списък с книги</title>
+  <link rel="stylesheet" href="/library.css">
+</head>
+<body>
+
+<header>
+  <h1>📚 Book Library</h1>
+  <nav>
+    <a th:href="@{/index}">Начало</a>
+    <a th:href="@{/books}" class="active">Книги</a>
+    <a th:href="@{/favourites}">Любими</a>
+    <a th:href="@{/profile}">Профил</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Списък с книги</h2>
+
+  <a href="/books/add">➕ Добави нова книга</a>
+
+  <div class="books-container">
+    <div class="book-card" th:each="book : ${books}">
+      <h3 th:text="${book.title}">Заглавие</h3>
+      <p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
+      <p><strong>Описание:</strong> <span th:text="${book.description}"></span></p>
+      <p><strong>Тип:</strong> <span th:text="${book.type}"></span></p>
+
+      <div class="actions">
+        <a th:href="@{'/books/edit/' + ${book.id}}">✏️ Редактирай</a>
+        <form th:action="@{'/books/delete/' + ${book.id}}" method="post" style="display:inline">
+          <button type="submit">🗑️ Изтрий</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Book Library</p>
+</footer>
+
+</body>
+</html>

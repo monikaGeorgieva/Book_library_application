@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Любими книги</title>
+
+    <link rel="stylesheet" th:href="@{/books.css}">
+</head>
+<body>
+
+<header>
+    <h1>📚 Book Library</h1>
+    <nav>
+        <a th:href="@{/index}">Начало</a>
+        <a th:href="@{/books}">Книги</a>
+        <a th:href="@{/favourites}" class="active">Любими</a>
+        <a th:href="@{/login}">Профил</a>
+    </nav>
+</header>
+
+<main>
+    <h2>Моите любими книги</h2>
+
+    <!-- Ако няма любими -->
+    <div class="no-favourites" th:if="${#lists.isEmpty(favourites)}">
+        Нямаш добавени любими книги.
+    </div>
+
+    <!-- Ако има любими – показваме ги като карти, както при /books -->
+    <div class="books-container" th:if="${!#lists.isEmpty(favourites)}">
+
+        <div class="book-card" th:each="fav : ${favourites}">
+            <!-- корица -->
+            <img th:if="${fav.favoriteBook.cover != null}"
+                 th:src="${fav.favoriteBook.cover}"
+                 alt="Book cover"
+                 class="book-cover"/>
+
+            <img th:if="${fav.favoriteBook.cover == null}"
+                 src="https://as2.ftcdn.net/v2/jpg/01/20/73/69/1000_F_120736914_mvc0UMUrgebZ11izrwPjF6HsHdsXnr8P.jpg"
+                 alt="Book cover"
+                 class="book-cover"/>
+
+            <!-- заглавие -->
+            <h3 th:text="${fav.favoriteBook.title}">Заглавие</h3>
+
+            <!-- автор -->
+            <p><strong>Автор:</strong>
+                <span th:text="${fav.favoriteBook.author}"></span>
+            </p>
+
+            <!-- дата на добавяне в любими -->
+            <p><strong>Добавена на:</strong>
+                <span th:text="${#temporals.format(fav.addedAt, 'dd.MM.yyyy HH:mm')}"></span>
+            </p>
+
+            <!-- бутон за премахване -->
+            <form th:action="@{'/favourites/remove/' + ${fav.id}}" method="post">
+                <button type="submit" class="fav-remove-btn">✖ Махни от любими</button>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 Book Library. Всички права запазени.</p>
+</footer>
+
+</body>
+</html>
