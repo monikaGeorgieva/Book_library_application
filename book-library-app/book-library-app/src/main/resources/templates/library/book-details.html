@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.title}">Детайли за книга</title>
+    <link rel="stylesheet" th:href="@{/books.css}">
+</head>
+<body>
+<header>
+    <h1 th:text="${book.title}">Заглавие</h1>
+    <a th:href="@{/books}">⬅ Назад към списъка</a>
+</header>
+
+<main>
+    <section>
+        <p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
+        <p><strong>Описание:</strong> <span th:text="${book.description}"></span></p>
+        <p><strong>Тип:</strong> <span th:text="${book.type}"></span></p>
+    </section>
+
+    <hr/>
+
+    <section>
+        <h2>Ревюта</h2>
+
+        <div th:if="${#lists.isEmpty(reviews)}">
+            <p>Все още няма ревюта за тази книга.</p>
+        </div>
+
+        <div th:each="rev : ${reviews}">
+            <p>
+                <strong th:text="${rev.username}">user</strong>
+                – оценка: <span th:text="${rev.rating}">5</span>/5
+            </p>
+            <p th:text="${rev.comment}">Коментар</p>
+            <hr/>
+        </div>
+    </section>
+
+    <section>
+        <h2>Добави ревю</h2>
+        <form th:action="@{'/books/' + ${book.ISBN} + '/reviews'}"
+              th:object="${newReview}"
+              method="post">
+
+            <label>Оценка (1–5):
+                <input type="number" min="1" max="5" th:field="*{rating}"/>
+            </label>
+            <br/>
+
+            <label>Коментар:
+                <textarea th:field="*{comment}"></textarea>
+            </label>
+            <br/>
+
+            <button type="submit">Запази</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>
