@@ -3,59 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${book.title}">Детайли за книга</title>
-    <link rel="stylesheet" th:href="@{/books.css}">
+
+    <!-- CSS за тази страница -->
+    <link rel="stylesheet" th:href="@{/book-details.css}">
 </head>
 <body>
-<header>
-    <h1 th:text="${book.title}">Заглавие</h1>
-    <a th:href="@{/books}">⬅ Назад към списъка</a>
+<header class="top-bar">
+    <div class="container">
+        <a th:href="@{/books}" class="back-link">← Назад към книгите</a>
+        <h1 class="app-title">Book Library</h1>
+    </div>
 </header>
 
-<main>
-    <section>
-        <p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
-        <p><strong>Описание:</strong> <span th:text="${book.description}"></span></p>
-        <p><strong>Тип:</strong> <span th:text="${book.type}"></span></p>
-    </section>
+<main class="container">
 
-    <hr/>
-
-    <section>
-        <h2>Ревюта</h2>
-
-        <div th:if="${#lists.isEmpty(reviews)}">
-            <p>Все още няма ревюта за тази книга.</p>
-        </div>
-
-        <div th:each="rev : ${reviews}">
-            <p>
-                <strong th:text="${rev.username}">user</strong>
-                – оценка: <span th:text="${rev.rating}">5</span>/5
+    <!-- Картичка с основна информация за книгата -->
+    <section class="book-card">
+        <div class="book-card-content">
+            <h2 class="book-title" th:text="${book.title}">Заглавие</h2>
+            <p class="book-author">
+                Автор:
+                <span th:text="${book.author}">Автор</span>
             </p>
-            <p th:text="${rev.comment}">Коментар</p>
-            <hr/>
+            <p class="book-type">
+                Тип:
+                <span th:text="${book.type}">TYPE</span>
+            </p>
+            <p class="book-description" th:text="${book.description}">
+                Описание на книгата…
+            </p>
         </div>
     </section>
 
-    <section>
-        <h2>Добави ревю</h2>
-        <form th:action="@{'/books/' + ${book.ISBN} + '/reviews'}"
-              th:object="${newReview}"
-              method="post">
+    <div class="layout">
+        <!-- Ревюта -->
+        <section class="reviews">
+            <h3>Ревюта</h3>
 
-            <label>Оценка (1–5):
-                <input type="number" min="1" max="5" th:field="*{rating}"/>
-            </label>
-            <br/>
+            <div th:if="${#lists.isEmpty(reviews)}" class="no-reviews">
+                Все още няма ревюта за тази книга. Бъди първият, който ще напише! 📚
+            </div>
 
-            <label>Коментар:
-                <textarea th:field="*{comment}"></textarea>
-            </label>
-            <br/>
+            <div th:each="rev : ${reviews}" class="review-card">
+                <div class="review-header">
+                    <span class="review-user" th:text="${rev.username}">User</span>
+                    <span class="review-rating">
+                        <span th:each="i : ${#numbers.sequence(1, rev.rating)}">★</span>
+                        <span th:each="i : ${#numbers.sequence(rev.rating + 1, 5)}"
+                              class="star-empty">★</span>
+                    </span>
+                </div>
+                <p class="review-comment" th:text="${rev.comment}">
+                    Много завладяваща книга!!!
+                </p>
+            </div>
+        </section>
 
-            <button type="submit">Запази</button>
-        </form>
-    </section>
+        <!-- Форма за ново ревю -->
+        <section class="review-form-section">
+            <h3>Добави ревю</h3>
+
+            <form th:action="@{'/books/' + ${book.ISBN} + '/reviews'}"
+                  th:object="${newReview}"
+                  method="post"
+                  class="review-form">
+
+                <div class="form-group">
+                    <label for="rating">Оценка (1–5)</label>
+                    <input id="rating" type="number" min="1" max="5" th:field="*{rating}">
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Коментар</label>
+                    <textarea id="comment" rows="4" th:field="*{comment}"
+                              placeholder="Сподели какво ти хареса (или не ти хареса) в книгата..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Изпрати ревю</button>
+            </form>
+        </section>
+    </div>
 </main>
+
+<footer class="footer">
+    <div class="container">
+        <span>© 2025 Book Library</span>
+    </div>
+</footer>
 </body>
 </html>
+
