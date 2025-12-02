@@ -29,9 +29,10 @@ public class BookService {
     }
 
     @CacheEvict(value = "books", allEntries = true)
-    public void addBook(Book book) {
+    public Book addBook(Book book) {
         log.info(">>> addBook()  тест – чистя кеша 'books'");
         bookRepository.save(book);
+        return book;
     }
 
 
