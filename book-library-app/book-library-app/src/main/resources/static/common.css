@@ -1,4 +1,4 @@
-/* Общи стилове */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@ body {
     margin: auto;
 }
 
-/* Хедър */
+
 header {
     background: #2c3e50;
     color: #fff;
@@ -49,7 +49,7 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* Hero секция */
+
 .hero {
     text-align: center;
     padding: 60px 20px;
@@ -76,7 +76,7 @@ nav ul li a:hover {
     background: #2980b9;
 }
 
-/* Списък книги */
+
 .books {
     margin: 40px 0;
 }

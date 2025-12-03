@@ -21,12 +21,12 @@
 <main>
     <h2>Моите любими книги</h2>
 
-    <!-- Ако няма любими -->
+
     <div class="no-favourites" th:if="${#lists.isEmpty(favourites)}">
         Нямаш добавени любими книги.
     </div>
 
-    <!-- Ако има любими – показваме ги като карти, както при /books -->
+
     <div class="books-container" th:if="${!#lists.isEmpty(favourites)}">
 
         <div class="book-card" th:each="fav : ${favourites}">
@@ -41,20 +41,20 @@
                  alt="Book cover"
                  class="book-cover"/>
 
-            <!-- заглавие -->
+
             <h3 th:text="${fav.favoriteBook.title}">Заглавие</h3>
 
-            <!-- автор -->
+
             <p><strong>Автор:</strong>
                 <span th:text="${fav.favoriteBook.author}"></span>
             </p>
 
-            <!-- дата на добавяне в любими -->
+
             <p><strong>Добавена на:</strong>
                 <span th:text="${#temporals.format(fav.addedAt, 'dd.MM.yyyy HH:mm')}"></span>
             </p>
 
-            <!-- бутон за премахване -->
+
             <form th:action="@{'/favourites/remove/' + ${fav.id}}" method="post">
                 <input type="hidden"
                        th:name="${_csrf.parameterName}"

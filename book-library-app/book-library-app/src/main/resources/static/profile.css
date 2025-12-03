@@ -1,4 +1,4 @@
-/* Общ стил за страницата */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -103,7 +103,7 @@ body {
     background: #0056b3;
 }
 
-/* Любими книги */
+
 .favorites-section h2 {
     margin-bottom: 20px;
     text-align: center;
@@ -127,7 +127,7 @@ body {
     transform: translateY(-5px);
 }
 
-/* Footer */
+
 .site-footer {
     background: #343a40;
     color: white;

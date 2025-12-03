@@ -31,7 +31,7 @@ nav a:hover, nav a.active {
     color: #1abc9c;
 }
 
-/* Основно съдържание */
+
 main {
     padding: 30px;
 }
@@ -40,14 +40,14 @@ main h2 {
     margin-bottom: 20px;
 }
 
-/* Контейнер с книги */
+
 .books-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 20px;
 }
 
-/* Картичка за книга */
+
 .book-card {
     background: #fff;
     padding: 20px;
@@ -95,7 +95,7 @@ footer {
 }
 
 .book-card {
-    width: 260px;               /* фиксирана ширина на картата */
+    width: 260px;
     padding: 16px;
     border-radius: 16px;
     background: #ffffff;
@@ -103,22 +103,22 @@ footer {
     margin-bottom: 24px;
 }
 
-/* Контейнер за самата корица */
+
 .book-cover-wrapper {
     width: 100%;
-    height: 340px;              /* ВИСОЧИНАТА НА РАМКАТА */
-    overflow: hidden;           /* всичко, което излиза, се изрязва */
+    height: 340px;
+    overflow: hidden;
     border-radius: 12px;
 }
 
 .book-cover {
-    width: 220px;          /* фиксирана ширина */
-    height: 330px;         /* фиксирана височина */
-    object-fit: cover;     /* попълва рамката без деформация */
-    border-radius: 12px;   /* красиви заоблени краища */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* лек ефект като в UI */
+    width: 220px;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     display: block;
-    margin: 0 auto;        /* центриране */
+    margin: 0 auto;
 }
 
 img.book-cover {

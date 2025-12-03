@@ -16,19 +16,19 @@
                th:value="${_csrf.token}" />
 
 
-        <!-- Потребителско име -->
+
         <div class="form-group">
             <label for="username">Потребителско име</label>
             <input th:field="*{username}" type="text" id="username" name="username" placeholder="Въведете потребителско име" required>
         </div>
 
-        <!-- Парола -->
+
         <div class="form-group">
             <label for="password">Парола</label>
             <input th:field="*{password}" type="password" id="password" name="password" placeholder="Въведете парола" required>
         </div>
 
-        <!-- Държава -->
+
         <div class="form-group">
             <label for="country">Държава</label>
             <select id="country" name="country" required th:field="*{country}" >
@@ -36,7 +36,7 @@
             </select>
         </div>
 
-        <!-- Бутон -->
+
         <button type="submit" class="btn">Регистрация</button>
     </form>
 

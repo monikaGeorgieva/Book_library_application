@@ -1,4 +1,4 @@
-/* Основен стил */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -9,7 +9,7 @@ body {
     height: 100vh;
 }
 
-/* Контейнер */
+
 .register-container {
     background: #fff;
     padding: 40px;
@@ -30,7 +30,7 @@ body {
     font-size: 20px;
 }
 
-/* Формата */
+
 .form-group {
     text-align: left;
     margin-bottom: 20px;
@@ -58,7 +58,7 @@ input:focus, select:focus {
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
-/* Бутон */
+
 .btn {
     width: 100%;
     padding: 12px;
@@ -76,7 +76,7 @@ input:focus, select:focus {
     background: #2980b9;
 }
 
-/* Линк за вход */
+
 .login-link {
     margin-top: 20px;
     font-size: 14px;

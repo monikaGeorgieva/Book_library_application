@@ -1,4 +1,4 @@
-/* Основни стилове */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -33,7 +33,7 @@ nav a.active {
     color: #1abc9c;
 }
 
-/* Основно съдържание */
+
 main {
     padding: 30px;
     max-width: 1000px;
@@ -44,14 +44,14 @@ main h2 {
     margin-bottom: 20px;
 }
 
-/* Грид със списък от книги */
+
 .books-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 20px;
 }
 
-/* Картичка за книга */
+
 .book-card {
     background: #fff;
     padding: 20px;
@@ -95,7 +95,7 @@ main h2 {
     background: #16a085;
 }
 
-/* Форма за добавяне и редактиране */
+
 .book-form {
     background: #fff;
     padding: 30px;
@@ -146,7 +146,7 @@ main h2 {
     color: #1abc9c;
 }
 
-/* Footer */
+
 footer {
     background: #34495e;
     color: #fff;
