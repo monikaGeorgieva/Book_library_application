@@ -8,6 +8,7 @@ import book_library_app.user.model.User;
 import book_library_app.user.model.UserRole;
 import book_library_app.user.repository.UserRepository;
 import book_library_app.web.dto.LoginRequest;
+import book_library_app.web.dto.ProfileEditRequest;
 import book_library_app.web.dto.RegisterRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -91,14 +92,6 @@ public class UserService {
 
 
 
-    // временно решение, докато нямаш Spring Security
-//    public User getCurrentUser() {
-//        return userRepository.findAll()
-//                .stream()
-//                .findFirst()
-//                .orElseThrow(() -> new IllegalStateException("No users in DB"));
-//    }
-
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -118,5 +111,33 @@ public class UserService {
                 .stream()
                 .map(Favorite::getFavoriteBook)  // взимаме Book от Favorite
                 .toList();
+    }
+
+    public ProfileEditRequest getProfileEditData(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new DomainException("User not found"));
+
+        ProfileEditRequest dto = new ProfileEditRequest();
+        dto.setFirstName(user.getFirstName());
+        dto.setLastName(user.getLastName());
+        dto.setEmail(user.getEmail());
+        dto.setCountry(user.getCountry());
+        dto.setProfilePicture(user.getProfilePicture());
+
+        return dto;
+    }
+
+    public void updateProfile(String username, ProfileEditRequest request) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new DomainException("User not found"));
+
+
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setEmail(request.getEmail());
+        user.setCountry(request.getCountry());
+        user.setProfilePicture(request.getProfilePicture());
+
+        userRepository.save(user);
     }
 }

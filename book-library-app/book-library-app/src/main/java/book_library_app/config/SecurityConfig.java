@@ -43,6 +43,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers(
                                 "/profile",
+                                "/profile/edit",
                                 "/favourites/**",
                                 "/books/add",
                                 "/books/edit/**"
