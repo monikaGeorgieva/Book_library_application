@@ -17,6 +17,11 @@
 
 <main>
   <form th:action="@{/books/add}" th:object="${book}" method="post" class="book-form">
+
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}" />
+
     <label>Заглавие:</label>
     <input type="text" th:field="*{title}" placeholder="Въведи заглавие" required>
 

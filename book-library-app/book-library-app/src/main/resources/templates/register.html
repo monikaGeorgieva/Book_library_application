@@ -10,6 +10,12 @@
     <h1>📚 Book Library</h1>
     <h2>Създай нов акаунт</h2>
     <form th:action="@{/register}" method="post" th:object="${registerRequest}">
+
+        <input type="hidden"
+               th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}" />
+
+
         <!-- Потребителско име -->
         <div class="form-group">
             <label for="username">Потребителско име</label>

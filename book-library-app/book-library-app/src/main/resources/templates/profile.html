@@ -12,8 +12,8 @@
         <ul>
             <li><a th:href="@{index}">Начало</a></li>
             <li><a th:href="@{/books}" class="active">Книги</a></li>
-            <li><a th:href="@{about}">За нас</a></li>
-            <li><a th:href="@{profile}" class="active">Профил</a></li>
+            <li><a th:href="@{/about}">За нас</a></li>
+            <li><a th:href="@{/profile}" class="active">Профил</a></li>
 
 
         </ul>
@@ -30,7 +30,7 @@
             <p th:text="${#strings.isEmpty(user.email) ? 'Редактирайте профила си и добавете имейл' : user.email}"> ivan.petrov@example.com </p>
             <p th:text="${user.country.displayName}"> България</p>
             <p th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY HH:mm' )}"></p>
-            <a href="#" class="btn">Редактирай профил</a>
+            <a th:href="@{/profile/edit}" class="btn">Редактирай профил</a>
             <!-- да си направя страница за редактиране на профила -->
         </div>
     </section>
@@ -58,6 +58,9 @@
 
         </div>
         <form th:action="@{/logout}" method="post">
+            <input type="hidden"
+                   th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}" />
             <button type="submit" class="btn">🚪 Изход</button>
         </form>
     </section>

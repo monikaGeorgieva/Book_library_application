@@ -13,7 +13,7 @@
     <a th:href="@{/index}">Начало</a>
     <a th:href="@{/books}" class="active">Книги</a>
     <a th:href="@{/favourites}">Любими</a>
-    <a th:href="@{login}">Профил</a>
+    <a th:href="@{/login}">Профил</a>
 
   </nav>
 </header>
@@ -46,14 +46,21 @@
 
       <p><strong>Тип:</strong> <span th:text="${book.type}"></span></p>
 
+
       <div sec:authorize="hasRole('ADMIN')">
         <form th:action="@{'/books/delete/' + ${book.ISBN}}" method="post">
+          <input type="hidden"
+                 th:name="${_csrf.parameterName}"
+                 th:value="${_csrf.token}"/>
           <button type="submit">🗑 Изтрий</button>
         </form>
       </div>
 
 
       <form th:action="@{'/favourites/add/' + ${book.ISBN}}" method="post">
+        <input type="hidden"
+               th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}"/>
         <button type="submit" class="add-book-btn">⭐ Добави в любими</button>
       </form>
 

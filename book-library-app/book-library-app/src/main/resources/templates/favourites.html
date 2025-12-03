@@ -56,6 +56,9 @@
 
             <!-- бутон за премахване -->
             <form th:action="@{'/favourites/remove/' + ${fav.id}}" method="post">
+                <input type="hidden"
+                       th:name="${_csrf.parameterName}"
+                       th:value="${_csrf.token}" />
                 <button type="submit" class="fav-remove-btn">✖ Махни от любими</button>
             </form>
         </div>
