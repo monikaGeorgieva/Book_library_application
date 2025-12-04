@@ -2,6 +2,7 @@ package book_library_app.book.service;
 
 import book_library_app.book.model.Book;
 import book_library_app.book.repository.BookRepository;
+import book_library_app.feign.ReviewClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,7 +16,9 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class BookService {
+
     private final BookRepository bookRepository;
+
 
     @Cacheable("books")
     public List<Book> getAllBooks() {
