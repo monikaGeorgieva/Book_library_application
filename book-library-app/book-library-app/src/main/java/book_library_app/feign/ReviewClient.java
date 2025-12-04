@@ -17,6 +17,7 @@ public interface ReviewClient {
     @PostMapping
     void addReview(@RequestBody CreateReviewDTO dto);
 
-
+    @DeleteMapping("/{id}")
+    void deleteReview(@PathVariable("id") UUID id);
 
 }

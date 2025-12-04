@@ -106,5 +106,16 @@ public class BookController {
         return "redirect:/books/" + ISBN;
     }
 
+    @PostMapping("/{ISBN}/reviews/{reviewId}/delete")
+    public String deleteReview(@PathVariable UUID ISBN,
+                               @PathVariable UUID reviewId) {
+
+
+        reviewClient.deleteReview(reviewId);
+
+
+        return "redirect:/books/" + ISBN;
+    }
+
 
 }
