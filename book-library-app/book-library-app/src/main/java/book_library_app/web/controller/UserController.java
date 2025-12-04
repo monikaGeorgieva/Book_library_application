@@ -22,7 +22,7 @@ public class UserController {
 
     private final UserService userService;
 
-    // списък с всички потребители (само за ADMIN, ограничено от SecurityConfig)
+
     @GetMapping
     public String listUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -30,10 +30,10 @@ public class UserController {
         model.addAttribute("users", users);
         model.addAttribute("roles", UserRole.values());
 
-        return "admin/users"; // templates/admin/users.html
+        return "admin/users";
     }
 
-    // смяна на ролята на потребител
+
     @PostMapping("/{id}/change-role")
     public String changeUserRole(@PathVariable("id") UUID id,
                                  @RequestParam("role") UserRole role,
