@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Manage Users</title>
+  <link rel="stylesheet" th:href="@{/books.css}">
+</head>
+<body>
+
+<header>
+  <h1>Потребители : </h1>
+</header>
+
+<main>
+
+  <div th:if="${message}" class="info-message">
+    <p th:text="${message}"></p>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Настояща роля: </th>
+      <th>Смени роля: </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.username}">username</td>
+      <td th:text="${user.email}">email</td>
+      <td th:text="${user.userRole}">USER_ROLE</td>
+
+      <td>
+        <form th:action="@{'/users/' + ${user.id} + '/change-role'}"
+              method="post">
+          <input type="hidden"
+                 th:name="${_csrf.parameterName}"
+                 th:value="${_csrf.token}"/>
+
+          <select name="role">
+            <option th:each="r : ${roles}"
+                    th:value="${r}"
+                    th:text="${r}"
+                    th:selected="${r == user.userRole}">
+            </option>
+          </select>
+
+          <button class="add-book-btn" type="submit">Change</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a th:href="@{/}" class="btn">⬅ Back to home</a>
+</main>
+
+</body>
+</html>

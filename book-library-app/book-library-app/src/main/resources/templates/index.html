@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Book Library - Начало</title>
@@ -16,6 +16,9 @@
                 <li> <a th:href="@{/favourites}">Любими</a></li>
                 <li>  <a th:href="@{/profile}">Профил</a></li>
                 <li>   <a th:href="@{/about}">За нас </a></li>
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{/users}">Администратор: Потребители</a>
+                </li>
             </ul>
         </nav>
     </div>

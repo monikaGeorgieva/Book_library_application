@@ -140,4 +140,12 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+    public void changeUserRole(UUID userId, UserRole newRole) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new DomainException("User not found"));
+
+        user.setUserRole(newRole);
+        userRepository.save(user);
+    }
 }
