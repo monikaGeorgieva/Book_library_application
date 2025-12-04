@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html  lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title th:text="${errorTitle} ?: 'Error'">Error</title>
+    <link rel="stylesheet" th:href="@{/index.css}">
+</head>
+<body>
+<header>
+    <h1 th:text="${errorTitle} ?: 'Something went wrong'">Error</h1>
+</header>
+
+<main>
+    <p th:text="${errorMessage} ?: 'An unexpected error occurred.'">
+        An unexpected error occurred.
+    </p>
+
+    <div th:if="${validationErrors}">
+        <h3>Details:</h3>
+        <ul>
+            <li th:each="err : ${validationErrors}"
+                th:text="${err.defaultMessage}">
+                Validation error
+            </li>
+        </ul>
+    </div>
+
+    <a th:href="@{/}" class="btn">⬅ Back to home</a>
+</main>
+</body>
+</html>
